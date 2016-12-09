@@ -78,11 +78,14 @@ for g=1:numel(files)
         Image_time = Series{q,1};
         Image_FRAP = imcrop(Image_time, ROI_bleach);
         FRAP1(q,1) = mean2(Image_FRAP);
+        %FRAP_1D(q,:) = mean(Image_FRAP,2);
         Image_Control = imcrop(Image_time, ROI_control);
         Control(q,1) = mean2(Image_Control);
         Image_BG = imcrop(Image_time, ROI_BG);
         BG(q,1) = mean2(Image_BG);
     end
+    
+    %imshow(FRAP_1D,[min(min(FRAP_1D)) max(max(FRAP_1D))])
     
     FRAP_corr = FRAP1- BG;
     Control_corr = Control - BG;
